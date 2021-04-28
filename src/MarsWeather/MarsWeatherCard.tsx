@@ -10,7 +10,7 @@ const MarsWeatherCard:React.FC<Props> = ({weatherData}) => {
     
     console.log(weatherData);
     return (
-        <div>
+        <div className="marsWeatherCard__parent"> 
            {
                weatherData.map((res:object|any)=>{
                  return(
