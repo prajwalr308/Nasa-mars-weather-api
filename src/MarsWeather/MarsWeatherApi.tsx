@@ -1,13 +1,12 @@
 import React, { useState,useEffect  } from 'react'
 import MarsWeatherCard from './MarsWeatherCard';
 
-interface Crumbs{
-    sol_keys:[]
-}
+
 const MarsWeatherApi:React.FC = () => {
     const apiKey=process.env.REACT_APP_API_KEY;
     const [weatherData, setWeatherData] = useState<object[]>([]);
-    const [solKey, setSolKey] = useState(Array);
+    const [newData, setNewData] = useState<object[]>([]);
+  
     var arr:object[]=[];
     useEffect(() => {
         console.log(process.env);
@@ -18,20 +17,30 @@ const MarsWeatherApi:React.FC = () => {
         Object.keys(data).map(function(key){  
             arr.push({[key]:data[key]})  
         })
-           
+        var i=0
+        
+           for(let i=0;i<arr.length-2;i++){
+            var solkey:string|any=data.sol_keys[i];
+            const a:object|any =arr[i];
+           console.log(a[solkey]) ;
+           newData.push(a[solkey]);
+        //    setNewData([{
+        //        time:a[solkey].First_UTC,
+        //     season:a[solkey].Season,
+
+        //    }])
+           }
      
-            setSolKey(data.sol_keys);
-            console.log(data.sol_keys)
-            console.log(arr)
+     
+            console.log("ss",newData)
+            
             setWeatherData(arr);
        })
         
     }, [])
     return (
         <div>
-          {weatherData? <div>{weatherData.map((data)=>{
-              console.log("magic",data)
-})}</div>:null}
+          <MarsWeatherCard weatherData={newData}  />
         </div>
     )
 }

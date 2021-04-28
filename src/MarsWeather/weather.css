@@ -1,0 +1,8 @@
+.marsWeatherCard__card{
+    background:linear-gradient(135deg, #fad961 0%,#f76b1c 100%);
+    color: white;
+    width: 300px;
+padding: 2em;
+    border-radius: 25px;
+    margin-top: 1em;
+}
