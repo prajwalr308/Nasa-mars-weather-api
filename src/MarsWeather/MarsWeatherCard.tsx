@@ -15,7 +15,7 @@ const MarsWeatherCard:React.FC<Props> = ({weatherData}) => {
                weatherData.map((res:object|any)=>{
                  return(
                     
-                    <div className="marsWeatherCard__card">
+                    <div key={res.sol_key} className="marsWeatherCard__card">
                     <p>{res.First_UTC}-{res.Last_UTC}</p>
                    <p>season:{res.Season}</p>
                    <p>Month:{res.Month_ordinal}</p>
