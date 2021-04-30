@@ -1,0 +1,9 @@
+.rover{
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
+    column-gap: 10px;
+}
+.rover_images{
+ 
+    width: 300px;
+}

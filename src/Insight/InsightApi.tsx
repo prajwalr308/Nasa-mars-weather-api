@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import MarsWeatherCard from "./MarsWeatherCard";
+import WeatherCard from "./WeatherCard";
 
-const MarsWeatherApi: React.FC = () => {
+
+const InsightApi: React.FC = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
   const [weatherData, setWeatherData] = useState<object[]>([]);
   const [stateCheck, setStateCheck] = useState<object[]>([]);
@@ -36,9 +37,9 @@ const MarsWeatherApi: React.FC = () => {
   }, []);
   return (
     <div>
-      <MarsWeatherCard weatherData={weatherData} />
+      <WeatherCard weatherData={weatherData} />
     </div>
   );
 };
 
-export default MarsWeatherApi;
+export default InsightApi;

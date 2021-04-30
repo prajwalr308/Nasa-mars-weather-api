@@ -7,7 +7,7 @@ const ApiTest:React.FC = () => {
     useEffect(() => {
         console.log(process.env);
        
-       fetch(`https://api.nasa.gov/insight_weather/?api_key=${apiKey}&feedtype=json&ver=1.0`).then((res)=>{
+       fetch(`https://mars.nasa.gov/rss/api/?feed=weather&category=msl&feedtype=json`).then((res)=>{
           return res.json()
        }).then((data)=>{
             console.log(data)

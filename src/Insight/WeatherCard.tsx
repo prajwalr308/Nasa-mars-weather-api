@@ -5,7 +5,7 @@ interface Props{
     weatherData:object[];
 
 }
-const MarsWeatherCard:React.FC<Props> = ({weatherData}) => {
+const WeatherCard:React.FC<Props> = ({weatherData}) => {
 
     
     console.log(weatherData);
@@ -30,4 +30,4 @@ const MarsWeatherCard:React.FC<Props> = ({weatherData}) => {
     )
 }
 
-export default MarsWeatherCard
+export default WeatherCard
