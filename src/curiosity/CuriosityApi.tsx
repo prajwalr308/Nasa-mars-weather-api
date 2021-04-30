@@ -13,7 +13,7 @@ const CuriosityApi:React.FC= () => {
        }).then((data)=>{
             console.log(data);
             arr=data.soles;
-            for(let i=0;i<arr.length-(arr.length-5);i++){
+            for(let i=0;i<4;i++){
                 globalWeatherarray.push(arr[i]);
             }
             console.log(globalWeatherarray);
