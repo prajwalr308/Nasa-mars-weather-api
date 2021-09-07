@@ -5,14 +5,20 @@ import ApiTest from './apitest/ApiTest.';
 import InsightApi from './Insight/InsightApi';
 import RoverPhotosApi from './RoverPhotos/RoverPhotosApi';
 import CuriosityApi from './curiosity/CuriosityApi';
+import Navbar from './Navbar/Navbar';
+import Solar from './Solar/Solar';
+import About from './About/About';
 
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
+      <Solar />
+      <About />
      <InsightApi />
       <RoverPhotosApi />
-      <ApiTest />
+     
       <CuriosityApi />
     </div>
   );

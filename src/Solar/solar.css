@@ -1,0 +1,8 @@
+.solar__img{
+    width: 80%;
+
+}
+.solar{
+    display: grid;
+    place-items: center;
+}
