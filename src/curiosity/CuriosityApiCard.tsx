@@ -15,12 +15,16 @@ const CuriosityApiCard:React.FC<Props> = ({weatherData}) => {
            {
                weatherData.map((res:object|any)=>{
                  return(
-                    <figure key={res.id} className="bg-gray-100 rounded-xl p-8">
-                   <div className="font-bold text-gray-700 rounded-full bg-yellow-500 flex items-center justify-center font-mono " style={{height: "90px", width: "90px", fontSize: "22px",color: "white",marginLeft: "120px", }}>{res.sol}</div>
+                    <figure style={{display: 'grid',placeItems:"center"}} key={res.id} className="bg-gray-100 rounded-xl p-8">
+                   <div className="font-bold text-gray-700 rounded-full bg-yellow-500 flex items-center justify-center font-mono " style={{height: "90px", width: "90px", fontSize: "22px",color: "white", }}>{res.sol}</div>
                     <div className="pt-6 text-center space-y-4">
                       <blockquote>
                         <p className="text-lg font-semibold">
                         date:{res.terrestrial_date}
+               
+                        </p>
+                        <p className="text-lg font-semibold">
+                     
                         martian days:{res.sol}
                         </p>
                       </blockquote>
@@ -30,6 +34,9 @@ const CuriosityApiCard:React.FC<Props> = ({weatherData}) => {
                         </div>
                         <div className="text-gray-500">
                         Max temparature:{res.max_temp}
+                        </div>
+                        <div className="text-gray-500">
+                        Pressure:{res.pressure}
                         </div>
                       </figcaption>
                     </div>
