@@ -23,6 +23,7 @@ const CuriosityApi:React.FC= () => {
     }, [])
     return (
         <div>
+            <h1 style={{fontSize:"2em",color:"orange",margin:"20px"}}>Mars weather Data</h1>
            <CuriosityApiCard weatherData={weatherData} />
         </div>
     )

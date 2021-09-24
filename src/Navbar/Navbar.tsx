@@ -23,13 +23,15 @@ const Navbar = () => {
       </li>
       
       <li className="border-t md:border-none">
-        <a href="/about/" className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">About</a>
+        <a href="#about" className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">About</a>
       </li>
       
       <li className="border-t md:border-none">
-        <a href="/blog/" className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">Curiosity</a>
+        <a href="#photos" className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">photos</a>
       </li>
-      
+      <li className="border-t md:border-none">
+        <a href="#weather" className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">weather</a>
+      </li>
     </ul>
     </div>
     <div className="-mr-2 flex md:hidden">

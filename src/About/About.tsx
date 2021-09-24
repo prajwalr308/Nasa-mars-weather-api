@@ -3,7 +3,7 @@ import mars from "../assets/mars.png"
 
 const About = () => {
   return (
-    <div className="flex">
+    <div id="about" className="flex">
       <div className="container mx-auto items-center flex flex-wrap">
         <div className="w-full md:w-8/12 lg:w-8/12 xl:w-8/12 px-4">
           <div className="pt-32 sm:pt-0">
@@ -26,7 +26,7 @@ const About = () => {
         </div>
       </div>
       <div>
-          <img src={mars} className="w-88 " />
+          <img src={mars} style={{width: '60%'}}/>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React from 'react'
 import './curiosity.css'
 import mars from '../assets/mars.png'
 
+
 interface Props{
     weatherData:object[];
 
@@ -11,11 +12,12 @@ const CuriosityApiCard:React.FC<Props> = ({weatherData}) => {
     
     console.log(weatherData);
     return (
-        <div className="marsWeatherCard__parent"> 
+        <div id="weather" className="marsWeatherCard__parent"> 
+       
            {
                weatherData.map((res:object|any)=>{
                  return(
-                    <figure style={{display: 'grid',placeItems:"center"}} key={res.id} className="bg-gray-100 rounded-xl p-8">
+                    <figure style={{display: 'grid',placeItems:"center"}}  key={res.id} className="bg-gray-100 rounded-xl p-8">
                    <div className="font-bold text-gray-700 rounded-full bg-yellow-500 flex items-center justify-center font-mono " style={{height: "90px", width: "90px", fontSize: "22px",color: "white", }}>{res.sol}</div>
                     <div className="pt-6 text-center space-y-4">
                       <blockquote>

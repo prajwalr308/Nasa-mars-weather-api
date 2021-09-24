@@ -37,6 +37,7 @@ const InsightApi: React.FC = () => {
   }, []);
   return (
     <div>
+      <h1>Mars weather info</h1>
       <WeatherCard weatherData={weatherData} />
     </div>
   );

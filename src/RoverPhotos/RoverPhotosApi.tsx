@@ -14,12 +14,15 @@ const RoverPhotosApi:React.FC = () => {
          })
     }, [])
     return (
-        <div className="rover"> 
+        <div id="photos" > 
+        <h1 style={{fontSize:"2em",color:"orange",margin:"20px"}}>Latest photos from curiosity</h1>
+        <div className="rover">
             {roverPhotos.map((photos:object|any)=>{
                 return (
                     <img className="rover_images" src={photos.img_src} />
                 )
             })}
+            </div>
         </div>
     )
 }

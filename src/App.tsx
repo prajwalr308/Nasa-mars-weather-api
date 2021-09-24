@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <Solar />
       <About />
-     <InsightApi />
+     {/* <InsightApi /> */}
       <RoverPhotosApi />
      
       <CuriosityApi />
