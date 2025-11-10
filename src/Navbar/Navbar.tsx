@@ -3,11 +3,6 @@ import { Transition } from "@headlessui/react";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [toggleMenu, setToggleMenu] = useState(false);
-
-    const handleToggle = () =>{
-      setToggleMenu(!toggleMenu)
-    }
   return (
     <nav className="nav flex flex-wrap items-center justify-between px-4">
     <div className="flex flex-no-shrink items-center mr-6 py-3 text-grey-darkest">
@@ -93,24 +88,31 @@ const Navbar = () => {
                
 
                 <a
-                  href="#"
+                  href="/"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                  Home
                 </a>
 
                 <a
-                  href="#"
+                  href="#about"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   About
                 </a>
 
                 <a
-                  href="#"
+                  href="#weather"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
-                  Curiosity
+                  Weather
+                </a>
+
+                <a
+                  href="#photos"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Photos
                 </a>
 
              
