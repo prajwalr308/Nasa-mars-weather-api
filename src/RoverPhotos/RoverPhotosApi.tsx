@@ -1,10 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import './rover.css'
-import { MarsPhoto, MarsPhotosResponse } from '../types'
+
+interface NASAImageItem {
+    href: string;
+    data: Array<{
+        title: string;
+        description: string;
+        date_created: string;
+        nasa_id: string;
+    }>;
+    links: Array<{
+        href: string;
+        rel: string;
+        render: string;
+    }>;
+}
+
+interface NASAImageResponse {
+    collection: {
+        items: NASAImageItem[];
+    };
+}
+
+interface RoverPhoto {
+    id: string;
+    title: string;
+    description: string;
+    imageUrl: string;
+    date: string;
+}
 
 const RoverPhotosApi: React.FC = () => {
-    const apiKey = process.env.REACT_APP_API_KEY;
-    const [roverPhotos, setRoverPhotos] = useState<MarsPhoto[]>([]);
+    const [roverPhotos, setRoverPhotos] = useState<RoverPhoto[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -14,27 +41,33 @@ const RoverPhotosApi: React.FC = () => {
                 setLoading(true);
                 setError(null);
 
-                // Use a recent sol (Martian day) to get recent photos
+                // Use NASA Image and Video Library API for Mars Curiosity rover images
                 const response = await fetch(
-                    `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=4000&api_key=${apiKey}`
+                    'https://images-api.nasa.gov/search?q=mars%20curiosity%20rover%20surface&media_type=image&year_start=2015'
                 );
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
-                const data: MarsPhotosResponse = await response.json();
+                const data: NASAImageResponse = await response.json();
 
-                if (data.photos && data.photos.length > 0) {
-                    // Get first 12 photos for display
-                    setRoverPhotos(data.photos.slice(0, 12));
+                if (data.collection.items && data.collection.items.length > 0) {
+                    // Transform the data to our format and get first 12 photos
+                    const photos: RoverPhoto[] = data.collection.items
+                        .filter(item => item.links && item.links.length > 0)
+                        .slice(0, 12)
+                        .map(item => ({
+                            id: item.data[0].nasa_id,
+                            title: item.data[0].title,
+                            description: item.data[0].description,
+                            imageUrl: item.links[0].href,
+                            date: new Date(item.data[0].date_created).toLocaleDateString()
+                        }));
+
+                    setRoverPhotos(photos);
                 } else {
-                    // If no photos on sol 4000, try sol 3000
-                    const fallbackResponse = await fetch(
-                        `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=3000&api_key=${apiKey}`
-                    );
-                    const fallbackData: MarsPhotosResponse = await fallbackResponse.json();
-                    setRoverPhotos(fallbackData.photos.slice(0, 12));
+                    throw new Error('No photos found');
                 }
             } catch (err) {
                 console.error('Error fetching rover photos:', err);
@@ -44,13 +77,8 @@ const RoverPhotosApi: React.FC = () => {
             }
         };
 
-        if (apiKey) {
-            fetchRoverPhotos();
-        } else {
-            setError('API key not found');
-            setLoading(false);
-        }
-    }, [apiKey]);
+        fetchRoverPhotos();
+    }, []);
 
     return (
         <div id="photos" className="w-full py-12 px-4 bg-black">
@@ -85,18 +113,18 @@ const RoverPhotosApi: React.FC = () => {
                                 className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                             >
                                 <img
-                                    src={photo.img_src}
-                                    alt={`Captured by ${photo.camera.full_name}`}
+                                    src={photo.imageUrl}
+                                    alt={photo.title}
                                     className="w-full h-64 object-cover"
                                     loading="lazy"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     <div className="absolute bottom-0 left-0 right-0 p-4">
-                                        <p className="text-white font-semibold text-sm">
-                                            {photo.camera.full_name}
+                                        <p className="text-white font-semibold text-sm line-clamp-2">
+                                            {photo.title}
                                         </p>
                                         <p className="text-gray-300 text-xs">
-                                            Sol {photo.sol} • {photo.earth_date}
+                                            {photo.date}
                                         </p>
                                     </div>
                                 </div>
