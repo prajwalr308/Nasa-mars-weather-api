@@ -13,9 +13,16 @@ const APOD: React.FC = () => {
                 setLoading(true);
                 setError(null);
 
+                // Set a timeout for the API request
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
                 const response = await fetch(
-                    `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
+                    `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`,
+                    { signal: controller.signal }
                 );
+
+                clearTimeout(timeoutId);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -25,7 +32,15 @@ const APOD: React.FC = () => {
                 setApodData(data);
             } catch (err) {
                 console.error('Error fetching APOD:', err);
-                setError(err instanceof Error ? err.message : 'Failed to fetch Astronomy Picture of the Day');
+                if (err instanceof Error) {
+                    if (err.name === 'AbortError') {
+                        setError('Request timeout - NASA API is taking too long to respond. Please try again later.');
+                    } else {
+                        setError(err.message);
+                    }
+                } else {
+                    setError('Failed to fetch Astronomy Picture of the Day. The NASA API may be temporarily unavailable.');
+                }
             } finally {
                 setLoading(false);
             }

@@ -1,5 +1,4 @@
 import React from "react";
-import mars from "../assets/mars.png"
 
 const About = () => {
   return (
@@ -56,11 +55,55 @@ const About = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <img
-              src={mars}
-              alt="Mars"
-              className="w-full max-w-md animate-pulse drop-shadow-2xl"
-            />
+            <div className="w-full max-w-md animate-pulse drop-shadow-2xl">
+              <svg viewBox="0 0 400 400" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="marsGradientMain" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style={{stopColor: '#FF7043', stopOpacity: 1}} />
+                    <stop offset="50%" style={{stopColor: '#E64A19', stopOpacity: 1}} />
+                    <stop offset="100%" style={{stopColor: '#BF360C', stopOpacity: 1}} />
+                  </radialGradient>
+                  <radialGradient id="craterGradient" cx="30%" cy="30%" r="50%">
+                    <stop offset="0%" style={{stopColor: '#D84315', stopOpacity: 1}} />
+                    <stop offset="100%" style={{stopColor: '#8D3815', stopOpacity: 1}} />
+                  </radialGradient>
+                </defs>
+
+                {/* Mars planet */}
+                <circle cx="200" cy="200" r="150" fill="url(#marsGradientMain)" />
+
+                {/* Polar ice cap */}
+                <ellipse cx="200" cy="80" rx="50" ry="25" fill="#E1F5FE" opacity="0.9" />
+                <ellipse cx="200" cy="75" rx="40" ry="20" fill="#FFFFFF" opacity="0.7" />
+
+                {/* Surface features and craters */}
+                <circle cx="150" cy="180" r="25" fill="url(#craterGradient)" opacity="0.6" />
+                <circle cx="250" cy="220" r="35" fill="url(#craterGradient)" opacity="0.5" />
+                <circle cx="180" cy="260" r="20" fill="url(#craterGradient)" opacity="0.7" />
+                <circle cx="280" cy="160" r="15" fill="url(#craterGradient)" opacity="0.6" />
+                <circle cx="220" cy="140" r="18" fill="url(#craterGradient)" opacity="0.5" />
+
+                {/* Valles Marineris - canyon system */}
+                <ellipse cx="200" cy="200" rx="80" ry="12" fill="#BF360C" opacity="0.4" transform="rotate(-15 200 200)" />
+
+                {/* Surface texture - small craters */}
+                <circle cx="130" cy="240" r="8" fill="#BF360C" opacity="0.4" />
+                <circle cx="270" cy="180" r="6" fill="#BF360C" opacity="0.3" />
+                <circle cx="160" cy="140" r="7" fill="#BF360C" opacity="0.4" />
+                <circle cx="240" cy="280" r="5" fill="#BF360C" opacity="0.3" />
+
+                {/* Dust storm effect */}
+                <path d="M 100 200 Q 150 190, 200 195 T 300 200" fill="none" stroke="#FFCCBC" strokeWidth="2" opacity="0.3" />
+                <path d="M 120 220 Q 170 215, 220 218 T 280 220" fill="none" stroke="#FFCCBC" strokeWidth="1.5" opacity="0.2" />
+
+                {/* Shadow/terminator line */}
+                <path d="M 200 50 Q 350 200 200 350" fill="rgba(0,0,0,0.2)" />
+
+                {/* Atmosphere glow */}
+                <circle cx="200" cy="200" r="155" fill="none" stroke="#FF9E80" strokeWidth="3" opacity="0.3" />
+                <circle cx="200" cy="200" r="158" fill="none" stroke="#FF6E40" strokeWidth="2" opacity="0.2" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
